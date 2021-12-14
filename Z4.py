@@ -1,20 +1,18 @@
 file = open('data.txt')
 
 try:
-    massiv = list(map(int, file.read().split()))
-
-    if len(massiv) <= 2:
-         print('Error!!! The data in the file is incorrect!\n-----')
+    massiv1 = list(map(int, file.readline().split()))
+    massiv2 = list(map(int, file.readline().split()))
+    if len(massiv1) < 1 or len(massiv2) < 1:
+         print('Error!!! The data in the file is incorrect!')
     else:
-         value1 = massiv[0]
-         value2 = massiv[1]
-         num = 0
-         for i in range(3, len(massiv)):
-            if (massiv[i] == value1) or (massiv[i] == value2):
-                num = i + 1
-         if num == 0:
-             print('No such numbers were found...\n-----')
-         else: print('№', num, '\n-----')
+         if(all(massiv1[i] <= massiv1[i + 1] for i in range(len(massiv1)-1))):
+             if(all(massiv2[i] <= massiv2[i + 1] for i in range(len(massiv2)-1))):
+                 massiv3 = massiv1 + massiv2
+                 massiv3.sort()
+                 print(massiv3) 
+             else: print('Error!!! The data in the file is incorrect!')
+         else: print('Error!!! The data in the file is incorrect!')
 except ValueError:
     print('Error!!! The data in the file is incorrect!\n-----')
 
